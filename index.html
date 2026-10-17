@@ -3,28 +3,98 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Weather App</title>
+   <title>Live Weather App</title>
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="App.css">
 </head>
 <body>
    <div class="container">
       <div class="search-div">
-         <input type="text" placeholder="Enter a city name" class="search-bar js-search-bar">
-         <button class="search-btn"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path></svg></button>
+         <input type="text" placeholder="Search any city in the world..." class="search-bar js-search-bar" autocomplete="off" spellcheck="false">
+         <button class="search-btn" title="Search City">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
+               <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path>
+               <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path>
+            </svg>
+         </button>
+         <button class="location-btn js-location-btn" title="Use My Current Location">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+               <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+            </svg>
+         </button>
       </div>
-      <div class="weather loading">
-         <h2 class="city">Weather in Nigeria</h2>
-         <h1 class="temp">50°C</h1>
-         <img src="" alt="" class="icon" />
-         <div class="description">Cloudy</div>
-         <div class="humidity">Humidity:  50%</div>
-         <div class="wind">Wind speed: 6.3km/h</div>
 
+      <div class="error-banner js-error-banner" style="display: none;"></div>
+
+      <div class="weather loading">
+         <div class="header-section">
+            <div class="city-info">
+               <h2 class="city">Detecting your location...</h2>
+               <div class="coordinates js-coordinates"></div>
+            </div>
+
+            <!-- Current Local Time of the Selected City -->
+            <div class="city-time-container">
+               <div class="time-label">Local City Time</div>
+               <div class="city-time">--:--:--</div>
+               <div class="city-date">--</div>
+            </div>
+         </div>
+
+         <!-- Temperature and Main Condition -->
+         <div class="temp-section">
+            <div class="temp-left">
+               <h1 class="temp">--°C</h1>
+               <div class="feels-like">Feels like: --°C</div>
+            </div>
+            <div class="temp-right">
+               <img src="" alt="Weather condition icon" class="icon" />
+               <div class="description">--</div>
+            </div>
+         </div>
+
+         <!-- Detailed Weather Metrics -->
+         <div class="details-grid">
+            <div class="detail-item">
+               <span class="detail-icon">💧</span>
+               <div class="detail-text">
+                  <span class="detail-label">Humidity</span>
+                  <span class="humidity detail-value">--%</span>
+               </div>
+            </div>
+
+            <div class="detail-item">
+               <span class="detail-icon">💨</span>
+               <div class="detail-text">
+                  <span class="detail-label">Wind Speed</span>
+                  <span class="wind detail-value">-- km/h</span>
+               </div>
+            </div>
+
+            <div class="detail-item">
+               <span class="detail-icon">👁️</span>
+               <div class="detail-text">
+                  <span class="detail-label">Visibility</span>
+                  <span class="visibility detail-value">-- km</span>
+               </div>
+            </div>
+
+            <div class="detail-item">
+               <span class="detail-icon">⏲️</span>
+               <div class="detail-text">
+                  <span class="detail-label">Pressure</span>
+                  <span class="pressure detail-value">-- hPa</span>
+               </div>
+            </div>
+         </div>
+
+         <div class="weather-footer">
+            <span class="weather-mood js-weather-mood"></span>
+         </div>
       </div>
    </div>
+   <script src="App.js"></script>
 </body>
-<script src="App.js"></script>
 </html>
