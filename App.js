@@ -50,17 +50,26 @@ function getCuratedFallback(mainCondition, isNight) {
 }
 
 /**
- * Updates the body background image with a smooth transition
+ * Updates the body and backdrop background image with smooth presentation
  */
 function setBackgroundImage(imageUrl) {
    if (!imageUrl) return;
    const img = new Image();
    img.src = imageUrl;
    img.onload = () => {
+      const bgBackdrop = document.getElementById("bg-backdrop");
+      if (bgBackdrop) {
+         bgBackdrop.style.backgroundImage = `url('${imageUrl}')`;
+      }
       document.body.style.backgroundImage = `url('${imageUrl}')`;
    };
    img.onerror = () => {
-      document.body.style.backgroundImage = `url('${weatherFallbacks.clearDay}')`;
+      const fallback = weatherFallbacks.clearDay;
+      const bgBackdrop = document.getElementById("bg-backdrop");
+      if (bgBackdrop) {
+         bgBackdrop.style.backgroundImage = `url('${fallback}')`;
+      }
+      document.body.style.backgroundImage = `url('${fallback}')`;
    };
 }
 

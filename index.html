@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
    <title>Live Weather App</title>
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,16 +10,19 @@
    <link rel="stylesheet" href="App.css">
 </head>
 <body>
+   <!-- Stable hardware-accelerated fixed background for all mobile and desktop devices -->
+   <div class="bg-backdrop" id="bg-backdrop"></div>
+
    <div class="container">
       <div class="search-div">
-         <input type="text" placeholder="Search any city in the world..." class="search-bar js-search-bar" autocomplete="off" spellcheck="false">
-         <button class="search-btn" title="Search City">
+         <input type="text" placeholder="Search any city in the world..." class="search-bar js-search-bar" autocomplete="off" spellcheck="false" aria-label="Search city">
+         <button type="button" class="search-btn" title="Search City" aria-label="Search City">
             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path>
                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path>
             </svg>
          </button>
-         <button class="location-btn js-location-btn" title="Use My Current Location">
+         <button type="button" class="location-btn js-location-btn" title="Use My Current Location" aria-label="Use My Current Location">
             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
                <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
             </svg>
